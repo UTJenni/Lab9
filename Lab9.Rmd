@@ -1,6 +1,6 @@
 ---
-title: "Lab9"
-author: "Your Name"
+title: "PSY329 - Lab9"
+author: "Jennifer Habicher"
 date: "2024-11-07"
 output: "github_document"
 ---
@@ -13,7 +13,7 @@ library(bruceR)
 library(haven)
 
 
-lab9data<-read_sav("C:/Users/Colin/Documents/lab9data.sav")
+lab9data<-read_sav("/Users/northlight/Documents/GitHub/Lab9/lab9data.sav")
 
 
 
@@ -29,8 +29,8 @@ https://www.neellab.ca/uploads/1/2/1/1/121173522/the_fundamental_social_motives_
 #The traditional way is to recode your items first, then use the recoded items to test reliability
 
 lab9data$FSMI3_R <- 8 - lab9data$FSMI3
-lab9data$FSMI57_R <- 8 - lab9data$FSMI57
-lab9data$FSMI58_R <- 8 - lab9data$FSMI58
+#lab9data$FSMI57_R <- 8 - lab9data$FSMI57 <-- Colin removed this line in class? (Old draft; not relevant)
+#lab9data$FSMI58_R <- 8 - lab9data$FSMI58 <-- Colin removed this line in class? (old draft; not relevant)
 
 #If you use the unrecoded items, it will mess up the Cronbach's alpha and lead you to draw wrong conclusion
 
@@ -51,17 +51,26 @@ EFA(lab9data, "FSMI", 1:6, rev = 3, method = "pa", plot.scree = TRUE, nfactors =
 ```
 # Now test reliability for the status seeking subscale
 ```{r}
-
+#Recall above: Alpha(lab9data, "FSMI", 1:6, rev = 3)
+Alpha(lab9data, "FSMI", 31:36, rev = 36)
 ```
-# Q1: What is the Cronbach's alpha of this subscale? Is it a reliable measure of status seeking? Why? 
+# Q1: What is the Cronbach's alpha of this subscale? Is it a reliable measure of status seeking? Why? *A1: The Cronbach's alpha of this subscale is 0.83. It is a reliable (good) measure of status seeking. This is because X. 
 
 # Now run a factor analysis on the Mate Retention (Breakup Concern) subscale
 ```{r}
-
-
-
+#Recall above: EFA(lab9data, "FSMI", 1:6, rev = 3, method = "pa", plot.scree = TRUE, nfactors = c("parallel"))
+EFA(lab9data, "FSMI", 49:54, method = "pa", plot.scree = TRUE, nfactors = c("parallel"))
 ```
 
-# Q2: How many factors can you identify from the results? Based on what? What is the range of the factor loadings? What is item that has the highest factor loading? In conclusion, is this a good measure of break up concern and why?
+# Q2: How many factors can you identify from the results? Based on what? What is the range of the factor loadings? What is item that has the highest factor loading? In conclusion, is this a good measure of break up concern and why?  *A2: I can identify 1 factor from the results. This conclusion is based on 3 factors: There is only 1 point before the flattening point (i.e. before the skree); there is only 1 point above the point above the simulation line (i.e. the light grey line); there is only 1 point above the Eigen Value line (i.e. the value of one, above the dashed line). The range of the fator loadings is 0.823-0.0940. In conclusion, this is a good measure of of breakup concern because all Factor Loadings are greater than 0.6. TYhe highest Factor Loading item in this case is "Q51: I worry that my romantic/sexual partner might leave me." 
 
-# Q3: Pick another subscale from FSMI. Test reliability and factor analysis. Answer all the questions  above. 
+# Q3: Pick another subscale from FSMI. Test reliability and factor analysis. Answer all the questions  above. *A3: I have chosen the FSMI subscale "Kin Care (Family)". In testing Factor Analysis, I determined that the Cronbach's alpha of this subscale is 0.895. It is a reliable (good) measure of "Kin Care (Family)". This is because X. I can identify 1 factor from the results. This conclusion is, again, based on 3 factors: There is only 1 point before the flattening point (i.e. before the skree); there is only 1 point above the point above the simulation line (i.e. the light grey line); there is only 1 point above the Eigen Value line (i.e. the value of one, above the dashed line). In this case, the range of the fator loading(s) is 0.725-0.822. In conclusion, this is a good measure, as all Factor Loadings are greater than 0.6. The item that has the greatest Factor Loading is "Q59: Being close to family members is extremely important to me."
+
+```{r}
+#Recall above: Alpha(lab9data, "FSMI", 1:6, rev = 3)
+Alpha(lab9data, "FSMI", 55:60, rev = 56:58)
+```
+```{r}
+#Recall above: EFA(lab9data, "FSMI", 1:6, rev = 3, method = "pa", plot.scree = TRUE, nfactors = c("parallel"))
+EFA(lab9data, "FSMI", 55:60, rev = 56:58, method = "pa", plot.scree = TRUE, nfactors = c("parallel"))
+```
